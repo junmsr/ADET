@@ -1,0 +1,51 @@
+Perez, Junmar BSIT 3A
+
+Activity # 1 | BSIT 3A IT 106 (ADET)
+
+1. Download and install XAMPP
+	-download XAMPP from apachefriends.org (select download for windows)
+	-install Apache, MySQL, PHP, and phpMyAdmin
+2. Open XAMPP and start Apache and MySQL
+3. Open your web browser and go to http://localhost/phpmyadmin/
+4. Create table in phpMyAdmin using SQL queries/statements
+	e.g.
+CREATE TABLE results (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    grade VARCHAR(50) NOT NULL,
+    marks INT NOT NULL
+);
+
+-write this in "SQL" tab and then click go.
+
+
+5. Create a file for connection
+	-create a file named "conn.php" for sql connection.
+	-save it into XAMPP/htdocs folder
+
+6. Test the connection
+	-add some data in the database
+	-create another file for testing ("index.php")
+	-write a php code that fetch the data from the database.
+	
+	e.g.
+<?php
+	require_once "conn.php";
+
+	$sql = "SELECT * FROM results";
+	$result = $conn->query($sql);
+	
+	if ($result->num_rows > 0) {
+	    while ($row = $result->fetch_assoc()) {
+	        echo "ID: " . $row["id"] . " - Name: " . $row["name"] . " - Grade: " . $row["grade"] . " - Marks: " . 	$row["marks"] . "<br>";
+	    }
+	} else {
+	    echo "No records found.";
+	}
+	$conn->close();
+?>
+
+	-If it display the data, everything works properly.
+
+7. Create and Run a PHP CRUD operations to test the functionality.
+
