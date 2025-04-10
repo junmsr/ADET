@@ -44,7 +44,7 @@ if(isset($_POST["name"]) && isset($_POST["grade"]) && isset($_POST["marks"])){
                         $Grade = $row["class"];
                         $Marks = $row["marks"];
                 ?>
-                    <form name = "update_student" action="updatedata.php?id=<?php echo $Id; ?>" method="post" onsubmit = "return validateForm()">
+                    <form name = "student_form" action="updatedata.php?id=<?php echo $Id; ?>" method="post" onsubmit = "return validateForm()">
                         <div class="row">
                             <div class="form-group col-lg-4">
                                 <label for="name">Student Name</label>
@@ -77,16 +77,6 @@ if(isset($_POST["name"]) && isset($_POST["grade"]) && isset($_POST["marks"])){
             </div>
         </div>
     </section>
-
-    <script>
-        function validateForm(){
-            let x = document.forms['update_student']['marks'].value;
-            
-            if (!((x >= 65) && (x <= 100))) {
-                alert("Invalid Grade!");
-            return false;
-            }
-        }
-    </script>
+    <script src = "validate.js"></script>
 </body>
 </html>
