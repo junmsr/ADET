@@ -73,7 +73,7 @@
                         <td><a href="updatedata.php?id=<?php echo $Id; ?>" class="btn btn-primary btn-sm">Edit</a></td>
                         <td><a href="deletedata.php?id=<?php echo $Id; ?>" class="btn btn-danger btn-sm" onclick="return confirmDelete();">Delete</a></td>
                         <td><a href="postdata.php?id=<?php echo $Id; ?>" class="btn btn-success btn-sm">Post</td>
-                        <td><a href="viewedata.php?id=<?php echo $Id; ?>" class="btn btn-secondary btn-sm">View Post</td>
+                        <td><a href="viewdata.php?id=<?php echo $Id; ?>" class="btn btn-secondary btn-sm">View Post</td>
                     </tr>
                     <?php
                 }
@@ -83,17 +83,10 @@
     </table>
 </div>
 
+<script src = "validate.js"></script>
 <script>
     function confirmDelete() {
         return confirm("Are you sure you want to delete this record?");
-    }
-
-    function validateForm(){
-        let x = document.forms['student_form']['marks'].value;
-        if (!((x >= 65) && (x <= 100))) {
-            alert("Invalid Grade!");
-            return false;
-        }
     }
 </script>
 </body>
