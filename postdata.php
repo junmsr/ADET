@@ -6,10 +6,10 @@
         $marks = $_POST['marks'];
         $id = $_GET['id'];
 
-        $sql = "INSERT INTO activity (activity, marks, id) VALUES ('$activity', '$marks', '$id')";
+        $sql = "INSERT INTO activity (activity, marks, results_id) VALUES ('$activity', '$marks', '$id')";
         
         if (mysqli_query($conn, $sql)) {
-            $avg_sql = "SELECT AVG(marks) AS average_marks FROM activity WHERE id = $id";
+            $avg_sql = "SELECT AVG(marks) AS average_marks FROM activity WHERE results_id = $id";
             $avg_result = mysqli_query($conn, $avg_sql);
             $avg_row = mysqli_fetch_assoc($avg_result);
             $average_marks = round($avg_row['average_marks']);
@@ -77,7 +77,7 @@
 </body>
 
 <script src="validate.js"></script>
-<script>
+<!-- <script>
     function calculateAverage() {
         var marks = document.getElementsByName('marks[]');
         var total = 0;
@@ -89,6 +89,7 @@
             }
         }
         var average = total / count;
+        var formattedAverage = average.toFixed(2);
     }
-</script>
+</script> -->
 </html>

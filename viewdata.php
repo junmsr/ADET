@@ -1,11 +1,9 @@
 <?php
 require_once "conn.php";
 
-$id = $_GET['id'];
-
-// Fetch student info
-$sql_query = "SELECT * FROM activity WHERE id = $id";
-$result = $conn->query($sql_query);
+    $id = $_GET['id'];
+    $sql_query = "SELECT * FROM activity WHERE results_id = $id";
+    $result = $conn->query($sql_query);
 ?>
 
 <!DOCTYPE html>
@@ -22,6 +20,7 @@ $result = $conn->query($sql_query);
             <thead class="table-dark">
                 <tr>
                     <th>ID</th>
+                    <th>Results ID</th>
                     <th>Activity</th>
                     <th>Marks</th>
                 </tr>
@@ -30,6 +29,7 @@ $result = $conn->query($sql_query);
                 <?php while ($row = $result->fetch_assoc()): ?>
                 <tr>
                     <td><?php echo htmlspecialchars($row['id']); ?></td>
+                    <td><?php echo htmlspecialchars($row['results_id']); ?></td>
                     <td><?php echo htmlspecialchars($row['activity']); ?></td>
                     <td><?php echo htmlspecialchars($row['marks']); ?></td>
                 </tr>
