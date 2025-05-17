@@ -1,27 +1,18 @@
 <?php
     require_once 'conn.php';
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $activity = $_POST['activity'];
+            $marks = $_POST['marks'];
+            $id = $_GET['id'];
 
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $activity = $_POST['activity'];
-        $marks = $_POST['marks'];
-        $id = $_GET['id'];
+            mysqli_query($conn, "INSERT INTO activity (activity, marks, results_id) VALUES ('$activity', '$marks', '$id')");
 
-        $sql = "INSERT INTO activity (activity, marks, results_id) VALUES ('$activity', '$marks', '$id')";
-        
-        if (mysqli_query($conn, $sql)) {
-            $avg_sql = "SELECT AVG(marks) AS average_marks FROM activity WHERE results_id = $id";
-            $avg_result = mysqli_query($conn, $avg_sql);
-            $avg_row = mysqli_fetch_assoc($avg_result);
-            $average_marks = round($avg_row['average_marks']);
+            $result = mysqli_query($conn, "SELECT AVG(marks) AS average FROM activity WHERE results_id = $id");
+            $avg = round(mysqli_fetch_assoc($result)['average']);
 
-            $update_sql = "UPDATE results SET marks = $average_marks WHERE id = $id";
-            mysqli_query($conn, $update_sql);
-
+            mysqli_query($conn, "UPDATE results SET marks = $avg WHERE id = $id");
             $message = "Activity posted successfully, and average marks updated.";
-        } else {
-            $message = "Error: " . mysqli_error($conn);
         }
-    }
 ?>
 <!DOCTYPE html>
 <html>
